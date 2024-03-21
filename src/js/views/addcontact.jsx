@@ -5,26 +5,26 @@ import { Link } from "react-router-dom";
 export const AddContact = () => {
     return (
 	<div className="text-center mt-5">
-		<h1>Hello Diana!</h1>
-		<form>
-		<div claseName="mb-3">
-			<label for="exampleInputEmail1" claseName="form-label">Email address</label>
-			<input type="email" claseName="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-			<div id="emailHelp" claseName="form-text">We'll never share your email with anyone else.</div>
-		</div>
-	<div claseName="mb-3">
-		<label for="exampleInputPassword1" claseName="form-label">Password</label>
-		<input type="password" claseName="form-control" id="exampleInputPassword1"/>
+		<h1>Add a new contact</h1>
+			<div className="container-md p-2 mb-2">
+				<label for="exampleFormControlInput1" className="form-label container-md d-flex fw-bold">Full Name</label>
+					<input type="email" className="form-control m-auto bg-white" id="exampleFormControlInput1" placeholder="Full Name"/>
+				<label for="exampleFormControlInput1" className="form-label container-md d-flex fw-bold mt-2">Email</label>
+					<input type="email" className="form-control m-auto bg-white" id="exampleFormControlInput1" placeholder="Enter email"/>
+				<label for="exampleFormControlInput1" className="form-label container-md d-flex fw-bold mt-2">Phone</label>
+					<input type="email" className="form-control m-auto bg-white" id="exampleFormControlInput1" placeholder="Enter phone"/>
+				<label for="exampleFormControlInput1" className="form-label container-md d-flex fw-bold mt-2">Address</label>
+					<input type="email" className="form-control m-auto bg-white" id="exampleFormControlInput1" placeholder="Enter Address"/>
+			</div>
+			<div className="d-grid gap-2">
+				<button className="btn btn-primary container-md p-2 fw-bold" type="button">Save</button>
+			</div>
+			<div className="d-flex container-md p-2 mb-4">
+			<Link to="/">
+				<span className="m-auto">Or get back to contacts</span>
+			</Link>
+			</div>
 	</div>
-	<div claseName="mb-3 form-check">
-		<input type="checkbox" claseName="form-check-input" id="exampleCheck1"/>
-		<label claseName="form-check-label" for="exampleCheck1">Check me out</label>
-	</div>
-	<button type="submit" claseName="btn btn-primary">Submit</button>
-	</form>
-	<Link to="/">
-					<button className="btn btn-success">Check the Context in action</button>
-				</Link>
-	</div>
+	
 );
 }
