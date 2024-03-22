@@ -1,9 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 
 
 
 export const AddContact = () => {
+
+  // console.log(useContext(Context)); Esto retorna los objetos de flux = store y actions
+
+
+  //Estados que creo de forma global y llevo luego a flux
+  // const [allContact, setAllContact]=useState([])
+  const { store, actions } = useContext(Context)
+  // console.log(store.addcontact);
+  //-----------------------------------------------------------
+
+//Creo 4 estados para definir las partes del formulario
+const [fullName, setFullName]= useState("")
+const [Email, setEmail]= useState("")
+const [address, setAddress]= useState("")
+const [phone, setPhonee]= useState("")
+
     return (
 	<div className="text-center mt-5">
 		<h1>Add a new contact</h1>
