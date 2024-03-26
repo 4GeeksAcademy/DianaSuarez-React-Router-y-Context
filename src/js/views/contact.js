@@ -2,9 +2,6 @@ import React, { useContext, useEffect, useState } from "react"; //1. Importar el
 import { Context } from "../store/appContext.js"; //2. Importar el contexto
 import { Link } from "react-router-dom";
 import { ContactCard } from "../component/contactcard.js";
-import { ModalDelete } from "../component/modaldelete.js";
-
-
 
 export const Contact = () => {
   // console.log(useContext(Context)); Esto retorna los objetos de flux = store y actions
@@ -16,7 +13,7 @@ export const Contact = () => {
   // console.log(store.addcontact);
   //-----------------------------------------------------------
 
-  console.log(store.allContact);
+  // console.log(store.allContact);
   //creo useEffect de la funcion que quiero que se ejecute y cargue el componente
   useEffect(() => {
     actions.getAllContacts()
@@ -32,16 +29,13 @@ export const Contact = () => {
 
       <div className="allCards">
         {store.allContact.map((contact) => {
-          console.log(contact);
+          // console.log(contact);
           return (
             <ContactCard contact={contact} />
           )
         })
         }
 
-        {/* <div className="button pencil">
-            <button className="btn btn fa-solid fa-pen mt-2 d-grid gap-1 justify-content-md-end m-1">holaaaa</button>
-        </div> */}
     </div>
     </div>
 

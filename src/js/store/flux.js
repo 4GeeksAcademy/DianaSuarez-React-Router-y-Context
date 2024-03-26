@@ -1,7 +1,6 @@
 //flux es una funcion que retorna un objeto que tiene dos compartimientos: store y actions. Una forma de organizar los datos=arquitectura.
 
 import { Children, useState } from "react";
-import { Contact } from "../views/contact";
 
 //getStore y getActions para obtener los estados y setStore para modificar o actualizar la store son funciones() 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -9,7 +8,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		//En store guardo todos los estados globales
 		store: {
-			allContact: []
+			allContact: [],
+			contactToDelete: {},
+			contact: {}
 		},
 
 		//En actions guardo todas las funcionalidades globales
@@ -22,19 +23,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: {
 						"Content-Type": "application/json"
 					},
-					body:JSON.stringify(
-					{
-						"full_name": contact.fullName,
-						"email": contact.email,
-						"agenda_slug": "Diana024",
-						"address": contact.address,
-						"phone": contact.phone
-					}),
+					body: JSON.stringify(
+						{
+							"full_name": contact.fullName,
+							"email": contact.email,
+							"agenda_slug": "Diana024",
+							"address": contact.address,
+							"phone": contact.phone
+						}),
 				})
-
-					.then((response) => response.json())
-					.then((data) => setStore({ allContact: data }))
-					.catch((error) => console.log(error))
+				.then((response) => response.json())
+				.then((data) => {
+					getActions().getAllContacts()
+				})
+				.catch((error) => console.log(error))
 			},
 			//GET OBTIENE TODOS LOS CONTACTOS
 			getAllContacts: function () {
@@ -43,23 +45,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((data) => setStore({ allContact: data }))
 					.catch((error) => console.log(error))
 			},
-			/**
-				fetch().then().then(data => setStore({ "foo": data.bar }))
-			*/
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+			//DELETE
+			contactToDelete: function (contact) {
+				console.log(contact.contact);
+				setStore({ contactToDelete: contact.contact })
+			},
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
+			deleteContact: function (contactId) {
+				fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`, { method: "DELETE" })
+					.then((response) => response.json())
+					.then((data) => {
+						getActions().getAllContacts()
+					})
+					.catch((error) => console.log(error))
+			},
+
+			// UPDATE CONTACT (Actualizar contacto)
+			setContact: function (contact) {
+				console.log(contact.contact);
+				setStore({ contact: contact.contact });
+			},
+
+			editContact: (contact) => {
+				fetch(`https://playground.4geeks.com/apis/fake/contact/${contact.id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(
+						{
+							"full_name": contact.fullName,
+							"email": contact.email,
+							"agenda_slug": "Diana024",
+							"address": contact.address,
+							"phone": contact.phone
+						}),
+				})
+				.then((response) => response.json())
+				.then((data) => {
+					getActions().getAllContacts()
+				})
+				.catch((error) => console.log(error))
+			},
 		}
 	};
 };
