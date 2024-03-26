@@ -38,8 +38,13 @@ export const Contact = () => {
           )
         })
         }
-      </div>
 
+        {/* <div className="button pencil">
+            <button className="btn btn fa-solid fa-pen mt-2 d-grid gap-1 justify-content-md-end m-1">holaaaa</button>
+        </div> */}
     </div>
+    </div>
+
+
   );
 }
