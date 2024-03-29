@@ -21,9 +21,9 @@ export const Contact = () => {
 
 
   return (
-    <div className="m-5">
+    <div className="m-5 d-grid justify-content-center">
       {/*a x link para cambiar la vista */}
-      <Link to="/addcontact">
+      <Link to="/addcontact" className="text-end">
         <button className="btn btn-success mb-5">Add new contact</button>
       </Link>
 

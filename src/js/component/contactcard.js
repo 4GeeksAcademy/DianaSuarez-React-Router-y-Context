@@ -1,26 +1,16 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-
+import "../../styles/home.css";
 
 export const ContactCard = (contact) => {
   //aplico destructuring
-
   // console.log(contact);
-
   const { actions, store } = useContext(Context)
 
   return (
-    <div className="card mb-3 d-flex">
-      {/* <div className="d-grid gap-1 d-md-flex justify-content-md-end m-1 mw-3">
-  <button className="btn btn" type="button"><i className="fa-solid fa-pen px-3 mt-3 me-md-2"></i></button>
-  <button className="btn btn" type="button"><i className="fa-solid fa-trash-can px-3 mt-3 me-md-2"></i></button>
-</div> */}
+    <div className="card m-auto mb-3 mx-100">
       {/* <!-- Button trigger modal --> */}
-      <Link to="/editcontact">
-        <button className="btn btn fa-solid fa-pen mt-2 d-grid gap-1 justify-content-md-end m-1" onClick={() => actions.setContact(contact)} type="button pencil" />
-      </Link>
-      <button type="button" onClick={() => actions.contactToDelete(contact)} className="btn fa-solid fa-trash-can mt-2 d-grid gap-1 justify-content-md-end m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" />
       {/* <!-- Modal --> */}
       <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
@@ -39,22 +29,25 @@ export const ContactCard = (contact) => {
           </div>
         </div>
       </div>
-
-      {/* <div clasName="mb-1 float-right me-md-2">
-              <i className="fa-solid fa-pen px-3 mt-3 me-md-2"></i>
-              <i className="fa-solid fa-trash-can px-3 mt-3 me-md-2"></i>
-            </div> */}
-
-      <div className="row g-0 mb-3">
-        <div className="col-md-3 row justify-content-center align-items-center">
-          <img src="https://png.pngtree.com/png-clipart/20230912/original/pngtree-profile-pic-vector-png-image_11052941.png" className="img-fluid rounded-circle img-fluid" alt="..." />
+      <div className="d-flex justify-content-end float-right">
+        <Link to="/editcontact">
+          <button className="btn btn fa-solid fa-pen mt-2 d-grid gap-1" onClick={() => actions.setContact(contact)}
+            type="button pencil" />
+        </Link>
+        <button type="button" onClick={() => actions.contactToDelete(contact)} className="btn fa-solid fa-trash-can mt-2"
+          data-bs-toggle="modal" data-bs-target="#exampleModal" />
+      </div>
+      <div className="row d-flex">
+        <div className="col-sm-5 col-md-3 px-4 mb-3">
+          <img src="https://icons.veryicon.com/png/o/miscellaneous/night-hunting/android-contacts.png"
+            className="pb-2 img-fluid rounded-circle mw-auto" alt="..." />
         </div>
-        <div className="col-md-3 col-sm-12 mb-5">
-          <h3 className="card-title mt-5 p-3 px-4">{contact.contact.full_name}</h3>
+        <div className="col-12 col-sm-6 col-md-9 px-5 img-fluid">
+          <h3 className="card-title mt-2 px-3">{contact.contact.full_name}</h3>
           <div className="card-body">
             <h5 className="card-text"><span><i className="fa-solid fa-location-dot px-3"></i></span>{contact.contact.address}</h5>
             <h5 className="card-text"><span><i className="fa-solid fa-phone-flip px-3"></i></span>{contact.contact.phone}</h5>
-            <h5 className="card-text"><span><i className="fa-solid fa-envelope px-3"></i></span>{contact.contact.email}</h5>
+            <h5 className="card-text"><span><i className="fa-solid fa-envelope px-3 "></i></span>{contact.contact.email}</h5>
             {/* <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p> */}
           </div>
         </div>
@@ -62,3 +55,4 @@ export const ContactCard = (contact) => {
     </div>
   )
 };
+
